@@ -19,14 +19,16 @@ def clima():
     params = params = {
     'latitude': dados[0], 
     'longitude': dados[1],
-    "current": [
+    "hourly": [
         "temperature_2m",
         "relative_humidity_2m",
         "weather_code",
-        "is_day",
+        "is_day"
     ],
+    "forecast_days": 1,
     "timezone": "auto"
 }
     requisicao = requests.get(url, params=params)
     dados_clima = requisicao.json()
-    return dados_clima
+    dados_por_hora = dados_clima['hourly']
+    return dados_por_hora
